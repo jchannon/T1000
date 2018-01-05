@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraditionalWebAPI", "TraditionalWebAPI\TraditionalWebAPI.csproj", "{626AD192-F5D0-4AE1-AEEC-7B8FE40E927F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{02A2B651-0B7C-498B-A671-80CF50EFC017}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Traditional Project", "1. Traditional Project", "{66D3DCED-78BD-4DB8-8C8D-3A5FA09543C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. MediatR Project", "2. MediatR Project", "{48EF8D64-76E9-4E2A-9939-7D50C7E320B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatRWebAPI", "MediatRWebAPI\MediatRWebAPI.csproj", "{40EC1455-176C-4B55-A550-E6F54AFD4491}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Mediator Project (no external deps)", "3. Mediator Project (no external deps)", "{892479C5-1CB2-4748-A910-89A57995D73C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{626AD192-F5D0-4AE1-AEEC-7B8FE40E927F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{626AD192-F5D0-4AE1-AEEC-7B8FE40E927F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{626AD192-F5D0-4AE1-AEEC-7B8FE40E927F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{626AD192-F5D0-4AE1-AEEC-7B8FE40E927F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02A2B651-0B7C-498B-A671-80CF50EFC017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02A2B651-0B7C-498B-A671-80CF50EFC017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02A2B651-0B7C-498B-A671-80CF50EFC017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02A2B651-0B7C-498B-A671-80CF50EFC017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40EC1455-176C-4B55-A550-E6F54AFD4491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40EC1455-176C-4B55-A550-E6F54AFD4491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40EC1455-176C-4B55-A550-E6F54AFD4491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40EC1455-176C-4B55-A550-E6F54AFD4491}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{626AD192-F5D0-4AE1-AEEC-7B8FE40E927F} = {66D3DCED-78BD-4DB8-8C8D-3A5FA09543C6}
+		{40EC1455-176C-4B55-A550-E6F54AFD4491} = {48EF8D64-76E9-4E2A-9939-7D50C7E320B8}
+	EndGlobalSection
+EndGlobal
