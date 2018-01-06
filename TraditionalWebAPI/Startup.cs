@@ -6,7 +6,6 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Models;
-    using TraditionalWebAPI.Controllers;
     using TraditionalWebAPI.Repositories;
     using TraditionalWebAPI.Services;
 
