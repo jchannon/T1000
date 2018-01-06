@@ -20,12 +20,16 @@
 
         public static Func<int, Film> ListFilmBIdHandler
         {
-            get => listFilmById ?? (filmId => ListFilmByIdRoute.Handle(filmId, fId => new Film
-            {
-                Id = 1,
-                Name = "Pulp Fiction",
-                DirectorId = 1
-            }));
+            get => listFilmById ?? (filmId => ListFilmByIdRoute.Handle(
+                        filmId, 
+                        //Write some SQL to get the film
+                        fId => new Film { Id = 1, Name = "Pulp Fiction", DirectorId = 1 },
+                        //Write some SQL to get the director
+                        dirId => new Director { Name = "Steven Spielberg" },
+                        //Write some SQL to get the cast
+                        fId => new[] { new CastMember { Name = "John Travolta" }, new CastMember { Name = "Samuel L Jackson" } }
+                    )
+                );
 
             set => listFilmById = value;
         }
