@@ -1,6 +1,5 @@
 ﻿namespace TraditionalWebAPI.Services
 {
-    using System.Collections.Generic;
     using Models;
     using TraditionalWebAPI.Repositories;
 
@@ -11,11 +10,6 @@
         public DirectorService(IDirectorRepository directorRepository)
         {
             this.directorRepository = directorRepository;
-        }
-
-        public IEnumerable<Director> ListAllDirectors()
-        {
-            return this.directorRepository.ListAllDirectors();
         }
 
         public Director ListDirectorById(int id)

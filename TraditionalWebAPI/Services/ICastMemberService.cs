@@ -5,8 +5,6 @@
 
     public interface ICastMemberService
     {
-        IEnumerable<CastMember> ListAllCastMembers();
-
         IEnumerable<CastMember> ListCastMembersByFilmId(int filmId);
 
         //Lots of other methods

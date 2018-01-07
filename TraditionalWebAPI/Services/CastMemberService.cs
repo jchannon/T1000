@@ -13,11 +13,6 @@
             this.castMemberRepository = castMemberRepository;
         }
 
-        public IEnumerable<CastMember> ListAllCastMembers()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public IEnumerable<CastMember> ListCastMembersByFilmId(int filmId)
         {
             return this.castMemberRepository.ListCastMembersByFilmId(filmId);
