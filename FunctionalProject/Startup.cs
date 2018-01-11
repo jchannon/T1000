@@ -10,7 +10,7 @@ namespace FunctionalProject
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddBotwin(Assembly.GetEntryAssembly(), typeof(FilmValidator).Assembly);
+            services.AddBotwin(Assembly.GetCallingAssembly(), typeof(FilmValidator).Assembly);
         }
 
         public void Configure(IApplicationBuilder app)

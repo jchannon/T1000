@@ -1,4 +1,4 @@
-﻿namespace FunctionalProject.Features.DelegateFilms.ListFilms
+﻿namespace FunctionalProject.Features.FuncFilms.ListFilms
 {
     using System.Collections.Generic;
     using Models;

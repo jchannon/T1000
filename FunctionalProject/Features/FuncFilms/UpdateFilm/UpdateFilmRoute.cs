@@ -1,4 +1,4 @@
-﻿namespace FunctionalProject.Features.DelegateFilms.UpdateFilm
+﻿namespace FunctionalProject.Features.FuncFilms.UpdateFilm
 {
     using System;
     using Models;

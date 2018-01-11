@@ -1,4 +1,4 @@
-﻿namespace FunctionalProject.Features.DelegateFilms.ListFilmById
+﻿namespace FunctionalProject.Features.FuncFilms.ListFilmById
 {
     using System;
     using System.Collections.Generic;
@@ -9,6 +9,11 @@
         public static Film Handle(int id, Func<int,Film> listFilmById, Func<int,Director> getDirectorById, Func<int,IEnumerable<CastMember>> getCastByFilmIdQuery)
         {
             var film = listFilmById(id);
+            
+            if (film == null)
+            {
+                return null;
+            }
 
             var director = getDirectorById(film.DirectorId);
             film.Director = director;

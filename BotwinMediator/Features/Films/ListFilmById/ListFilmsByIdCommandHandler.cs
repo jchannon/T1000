@@ -27,6 +27,11 @@
 
             //Use shared query to get film
             var film = this.listFilmByIdQuery.Execute(command.Id);
+            
+            if (film == null)
+            {
+                return null;
+            }
 
             var director = this.getDirectorByIdQuery.Execute(film.DirectorId);
             film.Director = director;

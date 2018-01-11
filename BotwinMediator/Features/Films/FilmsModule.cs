@@ -59,7 +59,7 @@
                 {
                     var command = new CreateFilmCommand(result.Data);
                     this.handler.Handle(command);
-                    res.StatusCode = 204;
+                    res.StatusCode = 201;
                 }
                 catch (Exception)
                 {

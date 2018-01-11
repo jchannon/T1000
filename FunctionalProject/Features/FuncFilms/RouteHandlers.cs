@@ -1,10 +1,12 @@
-﻿namespace FunctionalProject.Features.DelegateFilms
+﻿namespace FunctionalProject.Features.FuncFilms
 {
     using System;
     using System.Collections.Generic;
-    using FunctionalProject.Features.DelegateFilms.ListFilmById;
-    using FunctionalProject.Features.DelegateFilms.ListFilms;
-    using FunctionalProject.Features.DelegateFilms.UpdateFilm;
+    using FunctionalProject.Features.FuncFilms.CreateFilm;
+    using FunctionalProject.Features.FuncFilms.DeleteFilm;
+    using FunctionalProject.Features.FuncFilms.ListFilmById;
+    using FunctionalProject.Features.FuncFilms.ListFilms;
+    using FunctionalProject.Features.FuncFilms.UpdateFilm;
     using Models;
 
     public static class RouteHandlers
@@ -14,6 +16,10 @@
         private static Func<int, Film> listFilmById;
 
         private static Action<int, Film> updateFilm;
+
+        private static Action<Film> createFilm;
+
+        private static Action<int> deleteFilm;
 
         //private static Func<int,Film> getFilmyById = i => new Film { Id = 1, Name = "Pulp Fiction", DirectorId = 1 };
 
@@ -50,6 +56,18 @@
             );
 
             set => updateFilm = value;
+        }
+
+        public static Action<Film> CreateFilmHandler
+        {
+            get => createFilm ?? (film => CreateFilmRoute.Handle(film, () => new Random().Next() % 2 == 0));
+            set => createFilm = value;
+        }
+
+        public static Action<int> DeleteFilmHandler
+        {
+            get => deleteFilm ?? (id => DeleteFilmRoute.Handle(id, () => new Random().Next() % 2 == 0));
+            set => deleteFilm = value;
         }
     }
 }

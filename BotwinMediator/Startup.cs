@@ -33,7 +33,7 @@ namespace BotwinMediator
                 new UpdateFilmCommandHandler(s.GetRequiredService<IListFilmByIdQuery>(),s.GetRequiredService<IValidUserQuery>()) 
             }));
 
-            services.AddBotwin(Assembly.GetEntryAssembly(), typeof(FilmValidator).Assembly);
+            services.AddBotwin(Assembly.GetCallingAssembly(), typeof(FilmValidator).Assembly);
         }
 
         public void Configure(IApplicationBuilder app)

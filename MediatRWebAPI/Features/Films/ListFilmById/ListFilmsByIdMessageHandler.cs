@@ -25,8 +25,6 @@
         
         public Film Handle(ListFilmsByIdMessage message)
         {
-            //TODO Unit testing?
-            
             //Use shared query to get film
             var film = this.listFilmByIdQuery.Execute(message.Id);
 

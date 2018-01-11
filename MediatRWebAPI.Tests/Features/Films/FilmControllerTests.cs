@@ -1,4 +1,4 @@
-﻿namespace MediatRWebAPI.Tests
+﻿namespace MediatRWebAPI.Tests.Features.Films
 {
     using System;
     using System.Net.Http;

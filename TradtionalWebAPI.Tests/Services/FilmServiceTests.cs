@@ -1,4 +1,4 @@
-﻿namespace TradtionalWebAPI.Tests
+﻿namespace TradtionalWebAPI.Tests.Services
 {
     using System;
     using FakeItEasy;

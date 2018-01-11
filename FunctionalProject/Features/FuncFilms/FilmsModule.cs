@@ -1,4 +1,4 @@
-﻿namespace FunctionalProject.Features.DelegateFilms
+﻿namespace FunctionalProject.Features.FuncFilms
 {
     using System;
     using System.Threading.Tasks;
@@ -12,11 +12,38 @@
 
     public class FilmsModule : BotwinModule
     {
-        public FilmsModule() : base("/api/films")
+        public FilmsModule() : base("/api/funcy/films")
         {
             this.Get("/", this.GetFilms);
             this.Get("/{id:int}", this.GetFilmById);
             this.Put("/{id:int}", this.UpdateFilm);
+            this.Post("/", this.CreateFilm);
+            this.Delete("/{id:int}", this.DeleteFilm);
+        }
+
+        private async Task CreateFilm(HttpContext context)
+        {
+            var result = context.Request.BindAndValidate<Film>();
+
+            if (!result.ValidationResult.IsValid)
+            {
+                context.Response.StatusCode = 422;
+                await context.Response.Negotiate(result.ValidationResult.GetFormattedErrors());
+                return;
+            }
+
+            try
+            {
+                var handler = RouteHandlers.CreateFilmHandler;
+
+                handler(result.Data);
+
+                context.Response.StatusCode = 201;
+            }
+            catch (Exception)
+            {
+                context.Response.StatusCode = 403;
+            }
         }
 
         private async Task UpdateFilm(HttpContext context)
@@ -35,7 +62,7 @@
                 var handler = RouteHandlers.UpdateFilmHandler;
 
                 handler(context.GetRouteData().As<int>("id"), result.Data);
-                
+
                 context.Response.StatusCode = 204;
             }
             catch (Exception)
@@ -66,6 +93,24 @@
             }
 
             await context.Response.AsJson(film);
+        }
+
+        private Task DeleteFilm(HttpContext context)
+        {
+            try
+            {
+                var handler = RouteHandlers.DeleteFilmHandler;
+
+                handler(context.GetRouteData().As<int>("id"));
+
+                context.Response.StatusCode = 204;
+            }
+            catch (Exception)
+            {
+                context.Response.StatusCode = 403;
+            }
+
+            return Task.CompletedTask;
         }
     }
 }
