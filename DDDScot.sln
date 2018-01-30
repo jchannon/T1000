@@ -23,9 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E2EE7155-DAB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{44C1DD68-1371-456C-9541-BCC3CEE8A2BE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Tradtional Project Tests", "1. Tradtional Project Tests", "{DD7F5385-6594-4AF5-ADE9-ABC65C2A29BC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Traditional Project Tests", "1. Traditional Project Tests", "{DD7F5385-6594-4AF5-ADE9-ABC65C2A29BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradtionalWebAPI.Tests", "TradtionalWebAPI.Tests\TradtionalWebAPI.Tests.csproj", "{2974A21D-76F8-4248-BF01-E7B5BDA6A6FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraditionalWebAPI.Tests", "TraditionalWebAPI.Tests\TraditionalWebAPI.Tests.csproj", "{2974A21D-76F8-4248-BF01-E7B5BDA6A6FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. MediatR Project Tests", "2. MediatR Project Tests", "{694570A7-D60F-4058-A86F-B146204891B7}"
 EndProject

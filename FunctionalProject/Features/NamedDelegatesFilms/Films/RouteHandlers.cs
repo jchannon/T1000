@@ -11,6 +11,16 @@
 
     public static class RouteHandlers
     {
+        public static CreateFilmDelegate CreateFilmHandler;
+
+        public static ListFilmByIdDelegate ListFilmByIdHandler;
+
+        public static DeleteFilmDelegate DeleteFilmHandler;
+
+        public static ListFilmsDelegate ListFilmsHandler;
+
+        public static UpdateFilmDelegate UpdateFilmHandler;
+        
         static RouteHandlers()
         {
             CreateFilmHandler = film => CreateFilmRoute.Handle(film, () => ValidUserQuery.Execute());
@@ -28,18 +38,9 @@
 
             UpdateFilmHandler = (id, film) => UpdateFilmRoute.Handle(
                 id, 
-                film, () => ValidUserQuery.Execute(), 
+                film, 
+                () => ValidUserQuery.Execute(), 
                 filmId => ListFilmsByIdQuery.ListFilmsByIdQuery.Execute(filmId));
         }
-
-        public static CreateFilmDelegate CreateFilmHandler;
-
-        public static ListFilmByIdDelegate ListFilmByIdHandler;
-
-        public static DeleteFilmDelegate DeleteFilmHandler;
-
-        public static ListFilmsDelegate ListFilmsHandler;
-
-        public static UpdateFilmDelegate UpdateFilmHandler;
     }
 }

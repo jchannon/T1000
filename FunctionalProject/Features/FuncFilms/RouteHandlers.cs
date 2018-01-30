@@ -11,63 +11,41 @@
 
     public static class RouteHandlers
     {
-        private static Func<IEnumerable<Film>> listFilms;
+        public static Func<IEnumerable<Film>> ListFilmsHandler;
 
-        private static Func<int, Film> listFilmById;
+        public static Func<int, Film> ListFilmByIdHandler;
 
-        private static Action<int, Film> updateFilm;
+        public static Action<int, Film> UpdateFilmHandler;
 
-        private static Action<Film> createFilm;
+        public static Action<Film> CreateFilmHandler;
 
-        private static Action<int> deleteFilm;
+        public static Action<int> DeleteFilmHandler;
 
         //private static Func<int,Film> getFilmyById = i => new Film { Id = 1, Name = "Pulp Fiction", DirectorId = 1 };
 
-        public static Func<IEnumerable<Film>> ListFilmsHandler
+        static RouteHandlers()
         {
-            get => listFilms ?? ListFilmsRoute.Handle;
-            set => listFilms = value;
-        }
+            ListFilmsHandler = () => ListFilmsRoute.Handle();
 
-        public static Func<int, Film> ListFilmBIdHandler
-        {
-            get => listFilmById ?? (filmId => ListFilmByIdRoute.Handle(
-                    filmId,
-                    //Write some SQL to get the film
-                    fId => new Film { Id = 1, Name = "Pulp Fiction", DirectorId = 1 },
-                    //Write some SQL to get the director
-                    dirId => new Director { Name = "Steven Spielberg" },
-                    //Write some SQL to get the cast
-                    fId => new[] { new CastMember { Name = "John Travolta" }, new CastMember { Name = "Samuel L Jackson" } }
-                )
+            ListFilmByIdHandler = filmId => ListFilmByIdRoute.Handle(filmId,
+                //Write some SQL to get the film
+                fId => new Film { Id = 1, Name = "Pulp Fiction", DirectorId = 1 },
+                //Write some SQL to get the director
+                dirId => new Director { Name = "Steven Spielberg" },
+                //Write some SQL to get the cast
+                fId => new[] { new CastMember { Name = "John Travolta" }, new CastMember { Name = "Samuel L Jackson" } }
             );
 
-            set => listFilmById = value;
-        }
-
-        public static Action<int, Film> UpdateFilmHandler
-        {
-            get => updateFilm ?? ((filmId, film) => UpdateFilmRoute.Handle(
-                    filmId,
-                    film,
-                    () => new Random().Next() % 2 == 0,
-                    fId => new Film { Id = 1, Name = "Pulp Fiction", DirectorId = 1 }
-                )
+            UpdateFilmHandler = (filmId, film) => UpdateFilmRoute.Handle(
+                filmId,
+                film,
+                () => new Random().Next() % 2 == 0,
+                fId => new Film { Id = 1, Name = "Pulp Fiction", DirectorId = 1 }
             );
+            
+            CreateFilmHandler = film => CreateFilmRoute.Handle(film, () => new Random().Next() % 2 == 0);
 
-            set => updateFilm = value;
-        }
-
-        public static Action<Film> CreateFilmHandler
-        {
-            get => createFilm ?? (film => CreateFilmRoute.Handle(film, () => new Random().Next() % 2 == 0));
-            set => createFilm = value;
-        }
-
-        public static Action<int> DeleteFilmHandler
-        {
-            get => deleteFilm ?? (id => DeleteFilmRoute.Handle(id, () => new Random().Next() % 2 == 0));
-            set => deleteFilm = value;
+            DeleteFilmHandler = id => DeleteFilmRoute.Handle(id, () => new Random().Next() % 2 == 0);
         }
     }
 }

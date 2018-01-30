@@ -2,8 +2,6 @@
 {
     using System;
 
-   
-    
     public static class ValidUserQuery
     {
         public static bool Execute()

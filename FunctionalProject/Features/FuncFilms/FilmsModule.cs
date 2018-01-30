@@ -82,7 +82,7 @@
 
         private async Task GetFilmById(HttpContext context)
         {
-            var handler = RouteHandlers.ListFilmBIdHandler;
+            var handler = RouteHandlers.ListFilmByIdHandler;
 
             var film = handler(context.GetRouteData().As<int>("id"));
 
