@@ -23,8 +23,6 @@
 
         protected override object Execute(ListFilmsByIdCommand command)
         {
-            //TODO Unit testing?
-
             //Use shared query to get film
             var film = this.listFilmByIdQuery.Execute(command.Id);
             

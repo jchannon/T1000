@@ -21,6 +21,30 @@
             this.Delete("/{id:int}", this.DeleteFilm);
         }
 
+        private async Task GetFilms(HttpContext context)
+        {
+            var handler = RouteHandlers.ListFilmsHandler;
+
+            var films = handler();
+
+            await context.Response.AsJson(films);
+        }
+
+        private async Task GetFilmById(HttpContext context)
+        {
+            var handler = RouteHandlers.ListFilmByIdHandler;
+
+            var film = handler(context.GetRouteData().As<int>("id"));
+
+            if (film == null)
+            {
+                context.Response.StatusCode = 404;
+                return;
+            }
+
+            await context.Response.AsJson(film);
+        }
+        
         private async Task CreateFilm(HttpContext context)
         {
             var result = context.Request.BindAndValidate<Film>();
@@ -69,30 +93,6 @@
             {
                 context.Response.StatusCode = 403;
             }
-        }
-
-        private async Task GetFilms(HttpContext context)
-        {
-            var handler = RouteHandlers.ListFilmsHandler;
-
-            var films = handler();
-
-            await context.Response.AsJson(films);
-        }
-
-        private async Task GetFilmById(HttpContext context)
-        {
-            var handler = RouteHandlers.ListFilmByIdHandler;
-
-            var film = handler(context.GetRouteData().As<int>("id"));
-
-            if (film == null)
-            {
-                context.Response.StatusCode = 404;
-                return;
-            }
-
-            await context.Response.AsJson(film);
         }
 
         private Task DeleteFilm(HttpContext context)

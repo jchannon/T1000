@@ -84,7 +84,7 @@
         {
             //Given
 
-            //No mock library required to fake the GetFilmBtIdDelegate, GetDirectorById, GetCastMembersByFilmId we just invoke a func
+            //No mock library required to fake the GetFilmByIdDelegate, GetDirectorById, GetCastMembersByFilmId we just invoke a func
 
             RouteHandlers.ListFilmByIdHandler = id => ListFilmByIdRoute.Handle(id, filmid => new Film { Name = "Blade Runner" }, i => new Director(), filmId => new[] { new CastMember() });
 
@@ -101,7 +101,7 @@
         {
             //Given
 
-            //No mock library required to fake the GetFilmBtIdDelegate, GetDirectorById, GetCastMembersByFilmId we just invoke a func
+            //No mock library required to fake the GetFilmByIdDelegate, GetDirectorById, GetCastMembersByFilmId we just invoke a func
 
             RouteHandlers.ListFilmByIdHandler = id => ListFilmByIdRoute.Handle(id, filmid => null, i => new Director(), filmId => new[] { new CastMember() });
 
