@@ -1,4 +1,4 @@
-﻿namespace TradtionalWebAPI.Tests.Controllers
+﻿namespace TraditionalWebAPI.Tests.Controllers
 {
     using System;
     using System.Net.Http;

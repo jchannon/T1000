@@ -4,13 +4,16 @@
     using System.Net.Http;
     using System.Text;
     using System.Threading.Tasks;
-    using Botwin;
+    using FluentValidation;
+    using FluentValidation.AspNetCore;
     using FunctionalProject.Features.NamedDelegatesFilms.Films;
     using FunctionalProject.Features.NamedDelegatesFilms.Films.CreateFilm;
     using FunctionalProject.Features.NamedDelegatesFilms.Films.ListFilmById;
     using Microsoft.AspNetCore;
+    using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.TestHost;
+    using Microsoft.Extensions.DependencyInjection;
     using Models;
     using Newtonsoft.Json;
     using Xunit;
@@ -24,15 +27,19 @@
         public FilmTests()
         {
             server = new TestServer(WebHost.CreateDefaultBuilder()
-                .ConfigureServices(services => services.AddBotwin(typeof(RouteHandlers).Assembly, typeof(FilmValidator).Assembly))
-                .Configure(app => app.UseBotwin())
+                .ConfigureServices(services =>
+                {
+                    services.AddMvc().AddFluentValidation();
+                    services.AddTransient<IValidator<Film>, FilmValidator>();
+                })
+                .Configure(app => app.UseMvc())
             );
 
             client = server.CreateClient();
         }
 
         [Fact]
-        public async Task Should_return_422_on_invalid_data_when_creating_film()
+        public async Task Should_return_400_on_invalid_data_when_creating_film()
         {
             //Given
 
@@ -46,7 +53,7 @@
             var response = await client.PostAsync("/api/delegate/films", new StringContent(JsonConvert.SerializeObject(newFilm), Encoding.UTF8, "application/json"));
 
             //Then
-            Assert.Equal(422, (int)response.StatusCode);
+            Assert.Equal(400, (int)response.StatusCode);
         }
 
         [Fact]

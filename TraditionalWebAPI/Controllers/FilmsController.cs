@@ -2,10 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Models;
     using TraditionalWebAPI.Services;
 
+    [AllowAnonymous]
     [Route("api/[controller]")]
     public class FilmsController : Controller
     {
