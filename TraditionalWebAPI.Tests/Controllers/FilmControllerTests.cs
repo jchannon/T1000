@@ -143,6 +143,20 @@
         }
         
         [Fact]
+        public async Task Should_return_204_when_updating_film()
+        {
+            //Given
+            var client = this.GetClient();
+            var film = new Film { Name = "Shrek" };
+
+            //When
+            var response = await client.PutAsync("/api/films/1", new StringContent(JsonConvert.SerializeObject(film), Encoding.UTF8, "application/json"));
+
+            //Then
+            Assert.Equal(204, (int)response.StatusCode);
+        }
+        
+        [Fact]
         public async Task Should_return_204_when_deleting_film()
         {
             //Given
@@ -169,20 +183,6 @@
 
             //Then
             Assert.Equal(403, (int)response.StatusCode);
-        }
-        
-        [Fact]
-        public async Task Should_return_204_when_updating_film()
-        {
-            //Given
-            var client = this.GetClient();
-            var film = new Film { Name = "Shrek" };
-
-            //When
-            var response = await client.PutAsync("/api/films/1", new StringContent(JsonConvert.SerializeObject(film), Encoding.UTF8, "application/json"));
-
-            //Then
-            Assert.Equal(204, (int)response.StatusCode);
         }
 
         private HttpClient GetClient(IFilmService filmService = null)

@@ -23,9 +23,7 @@
         
         static RouteHandlers()
         {
-            CreateFilmHandler = film => CreateFilmRoute.Handle(film, () => ValidUserQuery.Execute());
-
-            DeleteFilmHandler = id => DeleteFilmRoute.Handle(id, () => ValidUserQuery.Execute());
+            ListFilmsHandler = () => ListFilmsRoute.Handle();
             
             ListFilmByIdHandler = id => ListFilmByIdRoute.Handle(
                 id,
@@ -33,14 +31,16 @@
                 dirId => GetDirectorByIdQuery.Execute(dirId),
                 filmId => GetCastByFilmIdQuery.Execute(id)
             );
-
-            ListFilmsHandler = () => ListFilmsRoute.Handle();
-
+            
             UpdateFilmHandler = (id, film) => UpdateFilmRoute.Handle(
                 id, 
                 film, 
                 () => ValidUserQuery.Execute(), 
                 filmId => ListFilmsByIdQuery.ListFilmsByIdQuery.Execute(filmId));
+            
+            CreateFilmHandler = film => CreateFilmRoute.Handle(film, () => ValidUserQuery.Execute());
+
+            DeleteFilmHandler = id => DeleteFilmRoute.Handle(id, () => ValidUserQuery.Execute());
         }
     }
 }

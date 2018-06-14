@@ -20,13 +20,11 @@
 
     public class FilmTests
     {
-        private TestServer server;
-
-        private HttpClient client;
+        private readonly HttpClient client;
 
         public FilmTests()
         {
-            server = new TestServer(WebHost.CreateDefaultBuilder()
+            var server = new TestServer(WebHost.CreateDefaultBuilder()
                 .ConfigureServices(services =>
                 {
                     services.AddMvc().AddFluentValidation();
@@ -35,7 +33,7 @@
                 .Configure(app => app.UseMvc())
             );
 
-            client = server.CreateClient();
+            this.client = server.CreateClient();
         }
 
         [Fact]
@@ -50,7 +48,7 @@
             var newFilm = new Film { Name = "" };
 
             //When
-            var response = await client.PostAsync("/api/delegate/films", new StringContent(JsonConvert.SerializeObject(newFilm), Encoding.UTF8, "application/json"));
+            var response = await this.client.PostAsync("/api/delegate/films", new StringContent(JsonConvert.SerializeObject(newFilm), Encoding.UTF8, "application/json"));
 
             //Then
             Assert.Equal(400, (int)response.StatusCode);
@@ -65,7 +63,7 @@
             var newFilm = new Film { Name = "Shrek" };
 
             //When
-            var response = await client.PostAsync("/api/delegate/films", new StringContent(JsonConvert.SerializeObject(newFilm), Encoding.UTF8, "application/json"));
+            var response = await this.client.PostAsync("/api/delegate/films", new StringContent(JsonConvert.SerializeObject(newFilm), Encoding.UTF8, "application/json"));
 
             //Then
             Assert.Equal(403, (int)response.StatusCode);
@@ -80,7 +78,7 @@
             var newFilm = new Film { Name = "Shrek" };
 
             //When
-            var response = await client.PostAsync("/api/delegate/films", new StringContent(JsonConvert.SerializeObject(newFilm), Encoding.UTF8, "application/json"));
+            var response = await this.client.PostAsync("/api/delegate/films", new StringContent(JsonConvert.SerializeObject(newFilm), Encoding.UTF8, "application/json"));
 
             //Then
             Assert.Equal(201, (int)response.StatusCode);
@@ -96,7 +94,7 @@
             RouteHandlers.ListFilmByIdHandler = id => ListFilmByIdRoute.Handle(id, filmid => new Film { Name = "Blade Runner" }, i => new Director(), filmId => new[] { new CastMember() });
 
             //When
-            var response = await client.GetAsync("/api/delegate/films/1");
+            var response = await this.client.GetAsync("/api/delegate/films/1");
             var contents = await response.Content.ReadAsStringAsync();
 
             //Then
@@ -113,7 +111,7 @@
             RouteHandlers.ListFilmByIdHandler = id => ListFilmByIdRoute.Handle(id, filmid => null, i => new Director(), filmId => new[] { new CastMember() });
 
             //When
-            var response = await client.GetAsync("/api/delegate/films/1");
+            var response = await this.client.GetAsync("/api/delegate/films/1");
 
             //Then
             Assert.Equal(404, (int)response.StatusCode);
